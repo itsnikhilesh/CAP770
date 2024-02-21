@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+    
+
+    Node(int val) : data(val), next(nullptr) {}
+};
+
+class LinkedList {
+private:
+    Node* head; 
+public:
+    LinkedList() : head(nullptr) {}
+
+    
+    void insertAtBeginning(int val) {
+        Node* newNode = new Node(val);
+        newNode->next = head;
+        head = newNode;
+    }
+
+
+    void insertAtEnd(int val) {
+        Node* newNode = new Node(val);
+        if (head == nullptr) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+            
+        }
+        temp->next = newNode;
+    }
+
+    void display() {
+        Node* temp = head;
+        while (temp != nullptr) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << std::endl;
+    }
+};
+
+int main() {
+    LinkedList myList;
+
+    myList.insertAtBeginning(3);
+    myList.insertAtBeginning(2);
+    myList.insertAtBeginning(1);
+    cout << "List after inserting at the beginning: ";
+    myList.display();
+
+
+    myList.insertAtEnd(4);
+    myList.insertAtEnd(5);
+    myList.insertAtEnd(6);
+    cout << "List after inserting at the end: ";
+    myList.display();
+
+    return 0;
+}
